@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<head>
+<script src="howler.js-master/dist/howler.js"></script>
+<script>
+function playAll() {
+
+Howler.stop();
+
+var left=document.getElementsByName("ChooseLeftAmp")[0];
+var leftValue = left.value;
+
+var right=document.getElementsByName("ChooseRightAmp")[0];
+var rightValue = right.value;
+
+var ampLeft = new Howl({
+  src: ['/amp left/'+leftValue+'.mp3'],
+  preload: true,
+  html5: false,
+  loop: true
+});
+
+var ampRight = new Howl({
+  src: ['/amp right/'+rightValue+'.mp3'],
+  preload: true,
+  html5: false,
+  loop: true
+});
+
+var bass = new Howl({
+  src: ['/bass/bass.mp3'],
+  preload: true,
+  html5: false,
+  loop: true
+});
+
+var drums = new Howl({
+  src: ['/drums/drums.mp3'],
+  preload: true,
+  html5: false,
+  loop: true
+});
+
+
+ampLeft.play();
+ampRight.play();
+bass.play();
+drums.play();
+// bass.volume(0);
+
+function muteLeft() {
+ampLeft.volume(0); 
+}
+
+}
+
+function playStop() {
+Howler.stop();
+}
+
+document.getElementById("muteLeft").addEventListener("click", ampLeft.volume(0)); 
+document.getElementById("muteRight").addEventListener("click", ampRight.volume(0)); 
+document.getElementById("muteBass").addEventListener("click", bass.volume(0)); 
+document.getElementById("muteDrums").addEventListener("click", drums.volume(0)); 
+
+</script>
+</head>
+
+<body>
+
+<div class="controls" align=center style="padding-top: 10%">
+<select name="ChooseLeftAmp" property="Left Amp" size="1">
+    <option value="L-JVM410H-OD1-Orange-MesaV30">Marshall JVM410H OD1 Orange</option>
+    <option value="L-HerbertMk1-Ch2+-MesaV30">Diezel Herbert Mk1 Ch2+</option>
+    <option value="L-HerbertMk1-Ch2+MC-MesaV30">Diezel Herbert Mk1 Ch2+ Midcut</option>
+    <option value="L-HerbertMk1-Ch3-MesaV30">Diezel Herbert Mk1 Ch3</option>
+    <option value="L-HerbertMk1-Ch3MC-MesaV30">Diezel Herbert Mk1 Ch3 Midcut</option>
+    <option value="L-UberschallEL34-MesaV30">Bogner Uberschall EL34</option>
+    <option value="L-RiveraKR7-Ch2-MesaV30">Rivera KR7 Ch2</option>
+    <option value="L-RiveraKR7-Ch3-MesaV30">Rivera KR7 Ch3</option>
+    <option value="">No Amp</option>
+</select>
+
+<select name="ChooseRightAmp" property="Left Amp" size="1">
+    <option value="R-JVM410H-OD1-Red-MesaV30">Marshall JVM410H OD1 Red</option>
+    <option value="R-HerbertMk1-Ch2+-MesaV30">Diezel Herbert Mk1 Ch2+</option>
+    <option value="R-HerbertMk1-Ch2+MC-MesaV30">Diezel Herbert Mk1 Ch2+ Midcut</option>
+    <option value="R-HerbertMk1-Ch3-MesaV30">Diezel Herbert Mk1 Ch3</option>
+    <option value="R-HerbertMk1-Ch3MC-MesaV30">Diezel Herbert Mk1 Ch3 Midcut</option>
+    <option value="R-UberschallEL34-MesaV30">Bogner Uberschall EL34</option>
+    <option value="R-RiveraKR7-Ch2-MesaV30">Rivera KR7 Ch2</option>
+    <option value="R-RiveraKR7-Ch3-MesaV30">Rivera KR7 Ch3</option>
+    <option value="">No Amp</option>
+</select>
+
+<br />
+<br />
+
+<button onclick="playAll()">Play All</button>
+<br />
+<br />
+
+<button id="playStop" onclick="playStop()">Stop All</button>
+<button id="muteLeft" onclick="muteLeft()">Mute Left</button>
+<button id="muteRight" onclick="muteRight()">Mute Right</button>
+<button id="muteBass" onclick="muteBass()">Mute Bass</button>
+<button id="muteDrums" onclick="muteDrums()">Mute Drums</button>
+
+<br />
+<br />
+</div>
+
+<!--
+<div class="volume">
+  <input type="range" min="0" max="10" value="10" class="slider" id="volumeSlider" onChange="volumeAdjust();">
+</div>
+-->
+</body>
+</html>
